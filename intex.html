@@ -1,0 +1,324 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RecipeFinder | Discover Delicious Recipes</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <a href="#" class="logo">🍽️ Recipe<span>Finder</span></a>
+
+        <button class="menu-toggle" id="menuToggle"
+                aria-label="Toggle navigation">☰</button>
+
+        <nav id="navigation">
+            <a href="#home">Home</a>
+            <a href="#recipes">Recipes</a>
+            <a href="#ingredients">Find by Ingredients</a>
+            <a href="#favorites">Favorites <span id="favCount">0</span></a>
+            <a href="#shopping">Shopping List</a>
+            <button id="themeToggle" class="theme-btn"
+                    aria-label="Toggle dark mode">🌙</button>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+
+            <div class="hero-content">
+                <span class="eyebrow">YOUR PERSONAL KITCHEN ASSISTANT</span>
+
+                <h1>Discover Delicious Recipes <span>Every Day.</span></h1>
+
+                <p>
+                    Find your next favorite meal using ingredients
+                    you already have in your kitchen.
+                </p>
+
+                <form id="searchForm" class="search-box">
+                    <input
+                        type="search"
+                        id="searchInput"
+                        placeholder="Search recipes, e.g. pasta..."
+                        aria-label="Search recipes">
+
+                    <button type="submit">Search 🔍</button>
+                </form>
+
+                <a href="#ingredients" class="primary-btn">
+                    Find Recipes With My Ingredients →
+                </a>
+            </div>
+
+            <div class="hero-image">
+                <img
+                    src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85"
+                    alt="Fresh healthy food"
+                    onerror="this.style.display='none'">
+
+                <div class="floating-card">
+                    <span>🥗</span>
+                    <div>
+                        <strong>Fresh & Delicious</strong>
+                        <p>Your next meal starts here!</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Ingredient Finder -->
+        <section class="ingredient-section section" id="ingredients">
+
+            <div class="section-heading">
+                <span class="eyebrow">SMART INGREDIENT MATCHING</span>
+                <h2>What's in Your Kitchen? 🥕</h2>
+                <p>Choose your ingredients and discover what you can cook.</p>
+            </div>
+
+            <div class="ingredient-panel">
+
+                <form id="ingredientForm" class="ingredient-input">
+                    <input
+                        type="text"
+                        id="ingredientInput"
+                        placeholder="Enter ingredient, e.g. tomato"
+                        aria-label="Enter an ingredient">
+
+                    <button type="submit">+ Add</button>
+                </form>
+
+                <div class="quick-ingredients">
+                    <span>Quick add:</span>
+
+                    <button type="button" class="quick-btn"
+                            data-ingredient="tomato">🍅 Tomato</button>
+
+                    <button type="button" class="quick-btn"
+                            data-ingredient="onion">🧅 Onion</button>
+
+                    <button type="button" class="quick-btn"
+                            data-ingredient="rice">🍚 Rice</button>
+
+                    <button type="button" class="quick-btn"
+                            data-ingredient="potato">🥔 Potato</button>
+
+                    <button type="button" class="quick-btn"
+                            data-ingredient="egg">🥚 Egg</button>
+
+                    <button type="button" class="quick-btn"
+                            data-ingredient="chicken">🍗 Chicken</button>
+
+                    <button type="button" class="quick-btn"
+                            data-ingredient="cheese">🧀 Cheese</button>
+                </div>
+
+                <h3>Your Ingredients</h3>
+
+                <div id="ingredientChips" class="ingredient-chips">
+                    <p class="muted">No ingredients added yet.</p>
+                </div>
+
+                <div class="ingredient-actions">
+                    <label class="check-label">
+                        <input type="checkbox" id="strictMatch">
+                        Only show recipes with all ingredients available
+                    </label>
+
+                    <button id="findRecipesBtn" class="primary-btn">
+                        Find Matching Recipes →
+                    </button>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Recipe Categories -->
+        <section class="section">
+
+            <div class="section-heading">
+                <span class="eyebrow">EXPLORE YOUR TASTE</span>
+                <h2>Explore Categories</h2>
+                <p>Choose what you feel like eating today.</p>
+            </div>
+
+            <div class="category-grid">
+
+                <button class="category-card active"
+                        data-category="All">
+                    <span>🍽️</span>
+                    <strong>All Recipes</strong>
+                </button>
+
+                <button class="category-card"
+                        data-category="Vegetarian">
+                    <span>🥗</span>
+                    <strong>Vegetarian</strong>
+                </button>
+
+                <button class="category-card"
+                        data-category="Non-Vegetarian">
+                    <span>🍗</span>
+                    <strong>Non-Veg</strong>
+                </button>
+
+                <button class="category-card"
+                        data-category="Breakfast">
+                    <span>🥞</span>
+                    <strong>Breakfast</strong>
+                </button>
+
+                <button class="category-card"
+                        data-category="Lunch">
+                    <span>🍛</span>
+                    <strong>Lunch</strong>
+                </button>
+
+                <button class="category-card"
+                        data-category="Dessert">
+                    <span>🍰</span>
+                    <strong>Desserts</strong>
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- Recipes -->
+        <section class="section recipes-section" id="recipes">
+
+            <div class="recipes-header">
+                <div>
+                    <span class="eyebrow">HANDPICKED FOR YOU</span>
+                    <h2 id="recipeHeading">Popular Recipes</h2>
+                    <p id="resultCount" class="muted"></p>
+                </div>
+
+                <div class="recipe-controls">
+
+                    <select id="dietFilter" aria-label="Diet filter">
+                        <option value="All">All Diets</option>
+                        <option value="Vegetarian">Vegetarian</option>
+                        <option value="Non-Vegetarian">Non-Vegetarian</option>
+                    </select>
+
+                    <select id="sortFilter" aria-label="Sort recipes">
+                        <option value="default">Sort By</option>
+                        <option value="time">Quickest First</option>
+                        <option value="name">Name A–Z</option>
+                        <option value="rating">Highest Rated</option>
+                    </select>
+
+                </div>
+            </div>
+
+            <div id="recipeGrid" class="recipe-grid"></div>
+
+            <div id="emptyState" class="empty-state hidden">
+                <span>🔎</span>
+                <h3>No recipes found</h3>
+                <p>Try another search or change your filters.</p>
+                <button id="clearFilters" class="primary-btn">
+                    Show All Recipes
+                </button>
+            </div>
+
+        </section>
+
+        <!-- Favorites -->
+        <section class="section favorites-section" id="favorites">
+
+            <div class="section-heading">
+                <span class="eyebrow">YOUR PERSONAL COLLECTION</span>
+                <h2>❤️ Your Favorite Recipes</h2>
+                <p>All your saved recipes in one place.</p>
+            </div>
+
+            <div id="favoriteGrid" class="recipe-grid"></div>
+
+        </section>
+
+        <!-- Shopping List -->
+        <section class="section shopping-section" id="shopping">
+
+            <div class="section-heading">
+                <span class="eyebrow">YOUR KITCHEN CHECKLIST</span>
+                <h2>🛒 Shopping List</h2>
+                <p>Keep track of the ingredients you need to buy.</p>
+            </div>
+
+            <div class="shopping-panel">
+
+                <form id="shoppingForm" class="ingredient-input">
+                    <input
+                        type="text"
+                        id="shoppingInput"
+                        placeholder="Add an ingredient to your list..."
+                        aria-label="Shopping list ingredient">
+
+                    <button type="submit">+ Add Item</button>
+                </form>
+
+                <div class="shopping-toolbar">
+                    <span id="shoppingCount">0 items remaining</span>
+                    <button id="clearPurchased" class="text-btn">
+                        Clear Purchased
+                    </button>
+                </div>
+
+                <ul id="shoppingList" class="shopping-list"></ul>
+
+                <p id="shoppingEmpty" class="muted">
+                    Your shopping list is empty.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Recipe Details Modal -->
+    <div id="recipeModal" class="modal hidden"
+         role="dialog" aria-modal="true"
+         aria-labelledby="modalTitle">
+
+        <div class="modal-content">
+
+            <button id="closeModal" class="close-modal"
+                    aria-label="Close recipe details">✕</button>
+
+            <div id="modalBody"></div>
+
+        </div>
+
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast" role="status"
+         aria-live="polite"></div>
+
+    <!-- Footer -->
+    <footer>
+        <a href="#home" class="logo">🍽️ Recipe<span>Finder</span></a>
+        <p>Made with ❤️ for people who love good food.</p>
+        <p>© 2026 RecipeFinder. All rights reserved.</p>
+    </footer>
+
+    <button id="backToTop" aria-label="Back to top">↑</button>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
